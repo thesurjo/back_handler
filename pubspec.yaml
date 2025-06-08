@@ -1,6 +1,6 @@
 name: back_handler
-description: "A plugin for back handler."
-version: 1.0.0
+description: "A Flutter plugin that provides double-tap back button functionality to exit the app with customizable toast messages, custom widgets, and flexible callbacks."
+version: 1.0.1
 homepage: https://github.com/thesurjo/back_handler
 # publish_to: 'https://pub.dev'
 

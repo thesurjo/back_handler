@@ -15,10 +15,7 @@ class BackHandlerExampleApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'BackHandler Plugin Examples',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        useMaterial3: true,
-      ),
+      theme: ThemeData(primarySwatch: Colors.blue, useMaterial3: true),
       home: const MainMenuPage(),
     );
   }
@@ -47,7 +44,9 @@ class MainMenuPage extends StatelessWidget {
               Icons.touch_app,
               () => Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const BasicUsageExample()),
+                MaterialPageRoute(
+                  builder: (context) => const BasicUsageExample(),
+                ),
               ),
             ),
             _buildExampleCard(
@@ -57,7 +56,9 @@ class MainMenuPage extends StatelessWidget {
               Icons.message,
               () => Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const CustomMessageExample()),
+                MaterialPageRoute(
+                  builder: (context) => const CustomMessageExample(),
+                ),
               ),
             ),
             _buildExampleCard(
@@ -77,7 +78,9 @@ class MainMenuPage extends StatelessWidget {
               Icons.swipe_up,
               () => Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const BottomSheetExample()),
+                MaterialPageRoute(
+                  builder: (context) => const BottomSheetExample(),
+                ),
               ),
             ),
             _buildExampleCard(
@@ -87,7 +90,9 @@ class MainMenuPage extends StatelessWidget {
               Icons.code,
               () => Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const CustomCallbackExample()),
+                MaterialPageRoute(
+                  builder: (context) => const CustomCallbackExample(),
+                ),
               ),
             ),
             _buildExampleCard(
@@ -97,7 +102,9 @@ class MainMenuPage extends StatelessWidget {
               Icons.widgets,
               () => Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const WidgetBuilderExample()),
+                MaterialPageRoute(
+                  builder: (context) => const WidgetBuilderExample(),
+                ),
               ),
             ),
             _buildExampleCard(
@@ -126,9 +133,9 @@ class MainMenuPage extends StatelessWidget {
             const SizedBox(height: 16),
             Text(
               'BackHandler Plugin Demo',
-              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
+              style: Theme.of(
+                context,
+              ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
             Text(
@@ -153,7 +160,9 @@ class MainMenuPage extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 12),
       child: ListTile(
         leading: CircleAvatar(
-          backgroundColor: Theme.of(context).primaryColor.withValues(alpha: 0.1),
+          backgroundColor: Theme.of(
+            context,
+          ).primaryColor.withValues(alpha: 0.1),
           child: Icon(icon, color: Theme.of(context).primaryColor),
         ),
         title: Text(title, style: const TextStyle(fontWeight: FontWeight.w600)),
@@ -351,7 +360,8 @@ class BottomSheetExample extends StatelessWidget {
     return BackHandler.wrap(
       customWidgetBuilder: BackHandlerWidgets.customBottomSheet(
         title: 'Hold on!',
-        message: 'Are you sure you want to leave? This page has some cool content!',
+        message:
+            'Are you sure you want to leave? This page has some cool content!',
         icon: Icons.favorite,
       ),
       child: Scaffold(
@@ -377,16 +387,19 @@ class BottomSheetExample extends StatelessWidget {
               ),
               const SizedBox(height: 32),
               // Add some content to make the page more interesting
-              ...List.generate(10, (index) => Card(
-                margin: const EdgeInsets.only(bottom: 8),
-                child: ListTile(
-                  leading: CircleAvatar(
-                    child: Text('${index + 1}'),
+              ...List.generate(
+                10,
+                (index) => Card(
+                  margin: const EdgeInsets.only(bottom: 8),
+                  child: ListTile(
+                    leading: CircleAvatar(child: Text('${index + 1}')),
+                    title: Text('Sample Content ${index + 1}'),
+                    subtitle: Text(
+                      'This is some sample content for demonstration',
+                    ),
                   ),
-                  title: Text('Sample Content ${index + 1}'),
-                  subtitle: Text('This is some sample content for demonstration'),
                 ),
-              )),
+              ),
             ],
           ),
         ),
@@ -420,7 +433,9 @@ class _CustomCallbackExampleState extends State<CustomCallbackExample> {
             context: context,
             builder: (context) => AlertDialog(
               title: const Text('Persistent User!'),
-              content: const Text('You\'ve pressed back 3 times! You really want to leave, don\'t you?'),
+              content: const Text(
+                'You\'ve pressed back 3 times! You really want to leave, don\'t you?',
+              ),
               actions: [
                 TextButton(
                   onPressed: () {
@@ -445,7 +460,9 @@ class _CustomCallbackExampleState extends State<CustomCallbackExample> {
           // Show snackbar with count
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text('Back pressed $_backPressCount time(s). Press ${3 - _backPressCount} more times to see something special!'),
+              content: Text(
+                'Back pressed $_backPressCount time(s). Press ${3 - _backPressCount} more times to see something special!',
+              ),
               duration: const Duration(seconds: 2),
             ),
           );
@@ -503,12 +520,11 @@ class WidgetBuilderExample extends StatelessWidget {
             const Text('Widget Builder'),
           ],
         ),
-        content: const Text('This dialog was created using BackHandlerWidget with a custom builder!'),
+        content: const Text(
+          'This dialog was created using BackHandlerWidget with a custom builder!',
+        ),
         actions: [
-          TextButton(
-            onPressed: closeCallback,
-            child: const Text('Cancel'),
-          ),
+          TextButton(onPressed: closeCallback, child: const Text('Cancel')),
           ElevatedButton(
             onPressed: () {
               closeCallback();
@@ -577,7 +593,8 @@ class _FormExampleState extends State<FormExample> {
 
   void _onFormChanged() {
     setState(() {
-      _hasUnsavedChanges = _nameController.text.isNotEmpty ||
+      _hasUnsavedChanges =
+          _nameController.text.isNotEmpty ||
           _emailController.text.isNotEmpty ||
           _messageController.text.isNotEmpty;
     });
@@ -586,30 +603,34 @@ class _FormExampleState extends State<FormExample> {
   @override
   Widget build(BuildContext context) {
     return BackHandler.wrap(
-      customCallback: _hasUnsavedChanges ? (context, closeCallback) async {
-        final shouldDiscard = await showDialog<bool>(
-          context: context,
-          builder: (context) => AlertDialog(
-            title: const Text('Unsaved Changes'),
-            content: const Text('You have unsaved changes. Do you want to discard them?'),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.of(context).pop(false),
-                child: const Text('Cancel'),
-              ),
-              TextButton(
-                onPressed: () => Navigator.of(context).pop(true),
-                style: TextButton.styleFrom(foregroundColor: Colors.red),
-                child: const Text('Discard'),
-              ),
-            ],
-          ),
-        );
-        
-        if (shouldDiscard == true) {
-          Navigator.of(context).pop();
-        }
-      } : null,
+      customCallback: _hasUnsavedChanges
+          ? (context, closeCallback) async {
+              final shouldDiscard = await showDialog<bool>(
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: const Text('Unsaved Changes'),
+                  content: const Text(
+                    'You have unsaved changes. Do you want to discard them?',
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.of(context).pop(false),
+                      child: const Text('Cancel'),
+                    ),
+                    TextButton(
+                      onPressed: () => Navigator.of(context).pop(true),
+                      style: TextButton.styleFrom(foregroundColor: Colors.red),
+                      child: const Text('Discard'),
+                    ),
+                  ],
+                ),
+              );
+
+              if (shouldDiscard == true) {
+                Navigator.of(context).pop();
+              }
+            }
+          : null,
       showDefaultToast: !_hasUnsavedChanges,
       child: Scaffold(
         appBar: AppBar(
@@ -636,7 +657,9 @@ class _FormExampleState extends State<FormExample> {
                   decoration: BoxDecoration(
                     color: Colors.orange.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(8),
-                    border: Border.all(color: Colors.orange.withValues(alpha: 0.3)),
+                    border: Border.all(
+                      color: Colors.orange.withValues(alpha: 0.3),
+                    ),
                   ),
                   child: const Row(
                     children: [

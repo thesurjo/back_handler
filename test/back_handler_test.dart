@@ -13,12 +13,12 @@ void main() {
       BackHandler.setShowDefaultToast(true);
     });
 
-    testWidgets('BackHandler.wrap creates PopScope widget', (WidgetTester tester) async {
+    testWidgets('BackHandler.wrap creates PopScope widget', (
+      WidgetTester tester,
+    ) async {
       final testWidget = MaterialApp(
         home: BackHandler.wrap(
-          child: const Scaffold(
-            body: Text('Test Content'),
-          ),
+          child: const Scaffold(body: Text('Test Content')),
         ),
       );
 
@@ -27,13 +27,11 @@ void main() {
       expect(find.text('Test Content'), findsOneWidget);
     });
 
-    testWidgets('BackHandlerWidget creates PopScope widget', (WidgetTester tester) async {
+    testWidgets('BackHandlerWidget creates PopScope widget', (
+      WidgetTester tester,
+    ) async {
       const testWidget = MaterialApp(
-        home: BackHandlerWidget(
-          child: Scaffold(
-            body: Text('Test Content'),
-          ),
-        ),
+        home: BackHandlerWidget(child: Scaffold(body: Text('Test Content'))),
       );
 
       await tester.pumpWidget(testWidget);
@@ -41,13 +39,13 @@ void main() {
       expect(find.text('Test Content'), findsOneWidget);
     });
 
-    testWidgets('First back press shows default message', (WidgetTester tester) async {
+    testWidgets('First back press shows default message', (
+      WidgetTester tester,
+    ) async {
       const testWidget = MaterialApp(
         home: BackHandlerWidget(
           toastMessage: 'Custom exit message',
-          child: Scaffold(
-            body: Text('Test Content'),
-          ),
+          child: Scaffold(body: Text('Test Content')),
         ),
       );
 
@@ -63,7 +61,9 @@ void main() {
       expect(find.text('Custom exit message'), findsOneWidget);
     });
 
-    testWidgets('Custom widget builder is called on first back press', (WidgetTester tester) async {
+    testWidgets('Custom widget builder is called on first back press', (
+      WidgetTester tester,
+    ) async {
       bool customWidgetCalled = false;
 
       final testWidget = MaterialApp(
@@ -81,9 +81,7 @@ void main() {
               ],
             );
           },
-          child: const Scaffold(
-            body: Text('Test Content'),
-          ),
+          child: const Scaffold(body: Text('Test Content')),
         ),
       );
 
@@ -99,7 +97,9 @@ void main() {
       expect(find.text('Custom Dialog'), findsOneWidget);
     });
 
-    testWidgets('Custom callback is called on first back press', (WidgetTester tester) async {
+    testWidgets('Custom callback is called on first back press', (
+      WidgetTester tester,
+    ) async {
       bool customCallbackCalled = false;
 
       final testWidget = MaterialApp(
@@ -107,9 +107,7 @@ void main() {
           customCallback: (context, closeCallback) async {
             customCallbackCalled = true;
           },
-          child: const Scaffold(
-            body: Text('Test Content'),
-          ),
+          child: const Scaffold(body: Text('Test Content')),
         ),
       );
 
@@ -126,7 +124,7 @@ void main() {
     test('setToastMessage updates toast message', () {
       const testMessage = 'Custom toast message';
       BackHandler.setToastMessage(testMessage);
-      
+
       // Since _toastMessage is private, we test indirectly by checking if the message is used
       expect(testMessage, equals('Custom toast message'));
     });
@@ -134,7 +132,7 @@ void main() {
     test('setExitTimeFrame updates exit time frame', () {
       const testDuration = Duration(seconds: 5);
       BackHandler.setExitTimeFrame(testDuration);
-      
+
       // Since _exitTimeFrame is private, we test indirectly
       expect(testDuration, equals(const Duration(seconds: 5)));
     });
@@ -142,16 +140,16 @@ void main() {
     test('setShowDefaultToast updates show default toast setting', () {
       BackHandler.setShowDefaultToast(false);
       BackHandler.setShowDefaultToast(true);
-      
+
       // Test passes if no exception is thrown
       expect(true, isTrue);
     });
 
     group('BackHandlerWidgets', () {
-      testWidgets('confirmationDialog creates AlertDialog', (WidgetTester tester) async {
-        const testWidget = MaterialApp(
-          home: Scaffold(body: Text('Test')),
-        );
+      testWidgets('confirmationDialog creates AlertDialog', (
+        WidgetTester tester,
+      ) async {
+        const testWidget = MaterialApp(home: Scaffold(body: Text('Test')));
 
         await tester.pumpWidget(testWidget);
         final context = tester.element(find.byType(Scaffold));
@@ -167,10 +165,10 @@ void main() {
         expect(dialog, isA<AlertDialog>());
       });
 
-      testWidgets('customBottomSheet creates Container', (WidgetTester tester) async {
-        const testWidget = MaterialApp(
-          home: Scaffold(body: Text('Test')),
-        );
+      testWidgets('customBottomSheet creates Container', (
+        WidgetTester tester,
+      ) async {
+        const testWidget = MaterialApp(home: Scaffold(body: Text('Test')));
 
         await tester.pumpWidget(testWidget);
         final context = tester.element(find.byType(Scaffold));
@@ -196,9 +194,7 @@ void main() {
 
     group('Static methods', () {
       testWidgets('showCustomDialog shows dialog', (WidgetTester tester) async {
-        const testWidget = MaterialApp(
-          home: Scaffold(body: Text('Test')),
-        );
+        const testWidget = MaterialApp(home: Scaffold(body: Text('Test')));
 
         await tester.pumpWidget(testWidget);
 
@@ -206,19 +202,18 @@ void main() {
 
         BackHandler.showCustomDialog(
           context,
-          (context, closeCallback) => const AlertDialog(
-            title: Text('Test Dialog'),
-          ),
+          (context, closeCallback) =>
+              const AlertDialog(title: Text('Test Dialog')),
         );
 
         await tester.pumpAndSettle();
         expect(find.byType(AlertDialog), findsOneWidget);
       });
 
-      testWidgets('showCustomBottomSheet shows bottom sheet', (WidgetTester tester) async {
-        const testWidget = MaterialApp(
-          home: Scaffold(body: Text('Test')),
-        );
+      testWidgets('showCustomBottomSheet shows bottom sheet', (
+        WidgetTester tester,
+      ) async {
+        const testWidget = MaterialApp(home: Scaffold(body: Text('Test')));
 
         await tester.pumpWidget(testWidget);
 

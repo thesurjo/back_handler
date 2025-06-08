@@ -108,6 +108,10 @@ BackHandler.wrap(
 )
 ```
 
+
+## [1.0.1] - 2025-06-08
+Small Bug fixes
+
 For more examples and advanced usage, see the [README.md](README.md) file.
 
 ---

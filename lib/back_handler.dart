@@ -233,20 +233,20 @@ class BackHandlerWidgets {
     String cancelText = 'Cancel',
   }) {
     return (context, closeCallback) => AlertDialog(
-          title: Text(title),
-          content: Text(message),
-          actions: [
-            TextButton(onPressed: closeCallback, child: Text(cancelText)),
-            TextButton(
-              onPressed: () {
-                closeCallback();
-                // Force exit on confirmation
-                SystemNavigator.pop();
-              },
-              child: Text(confirmText),
-            ),
-          ],
-        );
+      title: Text(title),
+      content: Text(message),
+      actions: [
+        TextButton(onPressed: closeCallback, child: Text(cancelText)),
+        TextButton(
+          onPressed: () {
+            closeCallback();
+            // Force exit on confirmation
+            SystemNavigator.pop();
+          },
+          child: Text(confirmText),
+        ),
+      ],
+    );
   }
 
   /// Creates a custom bottom sheet
@@ -256,43 +256,43 @@ class BackHandlerWidgets {
     IconData icon = Icons.exit_to_app,
   }) {
     return (context, closeCallback) => Container(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
+      padding: const EdgeInsets.all(20),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, size: 48, color: Theme.of(context).primaryColor),
+          const SizedBox(height: 16),
+          Text(title, style: Theme.of(context).textTheme.headlineSmall),
+          const SizedBox(height: 8),
+          Text(
+            message,
+            style: Theme.of(context).textTheme.bodyMedium,
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Icon(icon, size: 48, color: Theme.of(context).primaryColor),
-              const SizedBox(height: 16),
-              Text(title, style: Theme.of(context).textTheme.headlineSmall),
-              const SizedBox(height: 8),
-              Text(
-                message,
-                style: Theme.of(context).textTheme.bodyMedium,
-                textAlign: TextAlign.center,
+              ElevatedButton(
+                onPressed: closeCallback,
+                child: const Text('Stay'),
               ),
-              const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ElevatedButton(
-                    onPressed: closeCallback,
-                    child: const Text('Stay'),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      closeCallback();
-                      SystemNavigator.pop();
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.red,
-                      foregroundColor: Colors.white,
-                    ),
-                    child: const Text('Exit'),
-                  ),
-                ],
+              ElevatedButton(
+                onPressed: () {
+                  closeCallback();
+                  SystemNavigator.pop();
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.red,
+                  foregroundColor: Colors.white,
+                ),
+                child: const Text('Exit'),
               ),
             ],
           ),
-        );
+        ],
+      ),
+    );
   }
 
   /// Creates a snackbar-like widget at the bottom
