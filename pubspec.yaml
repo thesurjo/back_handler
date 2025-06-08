@@ -2,7 +2,7 @@ name: back_handler
 description: "A plugin for back handler."
 version: 1.0.0
 homepage: https://github.com/thesurjo/back_handler
-publish_to: 'https://pub.dev'
+# publish_to: 'https://pub.dev'
 
 environment:
   sdk: ^3.8.1
