@@ -1,7 +1,8 @@
 name: back_handler
-description: "A new Flutter plugin project."
+description: "A plugin for back handler."
 version: 1.0.0
 homepage:
+publish_to: 'https://pub.dev'
 
 environment:
   sdk: ^3.8.1
@@ -35,7 +36,7 @@ flutter:
   plugin:
     platforms:
       android:
-        package: com.example.back_handler
+        package: com.thesurjo.back_handler
         pluginClass: BackHandlerPlugin
       ios:
         pluginClass: BackHandlerPlugin

@@ -1,4 +1,4 @@
-package com.example.back_handler
+package com.thesurjo.back_handler
 
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
