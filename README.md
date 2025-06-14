@@ -36,7 +36,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  back_handler: ^1.0.0
+  back_handler: <latest_version>
 ```
 
 Then run:

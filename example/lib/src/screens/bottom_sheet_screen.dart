@@ -17,7 +17,7 @@ class BottomSheetScreen extends StatelessWidget {
           borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.1),
+              color: Colors.black.withValues(alpha: 0.1),
               blurRadius: 10,
               spreadRadius: 5,
             ),
@@ -32,7 +32,7 @@ class BottomSheetScreen extends StatelessWidget {
               width: 32,
               height: 4,
               decoration: BoxDecoration(
-                color: theme.colorScheme.onSurface.withOpacity(0.2),
+                color: theme.colorScheme.onSurface.withValues(alpha: 0.2),
                 borderRadius: BorderRadius.circular(2),
               ),
             ),
@@ -60,7 +60,7 @@ class BottomSheetScreen extends StatelessWidget {
                     'Are you sure you want to exit?',
                     textAlign: TextAlign.center,
                     style: theme.textTheme.bodyMedium?.copyWith(
-                      color: theme.colorScheme.onSurface.withOpacity(0.8),
+                      color: theme.colorScheme.onSurface.withValues(alpha: 0.8),
                     ),
                   ),
                   const SizedBox(height: 16),
